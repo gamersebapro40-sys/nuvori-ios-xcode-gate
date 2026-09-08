@@ -21,18 +21,22 @@ jobs:
         run: |
           set -euo pipefail
 
-          mapfile -t manifests < <(find . -name EXPORT-MANIFEST.json -type f)
+          COUNT="$(find . -name EXPORT-MANIFEST.json -type f | wc -l | tr -d ' ')"
 
-          if [ "${#manifests[@]}" -ne 1 ]; then
-            echo "Expected exactly one EXPORT-MANIFEST.json"
-            printf '%s\n' "${manifests[@]}"
+          echo "Found EXPORT-MANIFEST.json count: $COUNT"
+
+          if [ "$COUNT" != "1" ]; then
+            echo "FAIL: expected exactly one EXPORT-MANIFEST.json"
+            find . -name EXPORT-MANIFEST.json -type f -print
             exit 1
           fi
 
-          MANIFEST="${manifests[0]}"
+          MANIFEST="$(find . -name EXPORT-MANIFEST.json -type f | head -n 1)"
           BUNDLE_ROOT="$(dirname "$MANIFEST")"
 
-          echo "Found bundle at: $BUNDLE_ROOT"
+          echo "Found bundle at:"
+          echo "$BUNDLE_ROOT"
+
           echo "BUNDLE_ROOT=$BUNDLE_ROOT" >> "$GITHUB_ENV"
 
           python3 - "$BUNDLE_ROOT" <<'PY'
@@ -44,15 +48,19 @@ jobs:
           root = Path(sys.argv[1])
           manifest_path = root / "EXPORT-MANIFEST.json"
 
-          expected_manifest_sha = "72ea8c954d5f54de679990fb496154b2004b359028574ff4e69acef716a61eaa"
-          actual_manifest_sha = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+          expected = "72ea8c954d5f54de679990fb496154b2004b359028574ff4e69acef716a61eaa"
+          actual = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
 
-          print("EXPORT-MANIFEST SHA-256:", actual_manifest_sha)
+          print("EXPORT-MANIFEST SHA-256:", actual)
 
-          if actual_manifest_sha != expected_manifest_sha:
-              raise SystemExit("FAIL: export manifest SHA mismatch")
+          if actual != expected:
+              raise SystemExit(
+                  f"FAIL: manifest SHA mismatch: {actual}"
+              )
 
-          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          manifest = json.loads(
+              manifest_path.read_text(encoding="utf-8")
+          )
 
           failures = []
 
@@ -60,21 +68,27 @@ jobs:
               p = root / rel
 
               if not p.exists():
-                  failures.append(f"{rel}: missing")
+                  failures.append(f"{rel}: MISSING")
                   continue
 
-              actual = hashlib.sha256(p.read_bytes()).hexdigest()
+              h = hashlib.sha256(p.read_bytes()).hexdigest()
 
-              if actual != meta["sha256"]:
+              if h != meta["sha256"]:
                   failures.append(
-                      f"{rel}: {actual} != {meta['sha256']}"
+                      f"{rel}: {h} != {meta['sha256']}"
                   )
 
           if failures:
-              print("\n".join(failures))
-              raise SystemExit("FAIL: exported file SHA verification failed")
+              for failure in failures:
+                  print(failure)
 
-          print(f"PASS: {len(manifest)} exported files verified exactly.")
+              raise SystemExit(
+                  "FAIL: bundle file verification failed"
+              )
+
+          print(
+              f"PASS: {len(manifest)} files verified exactly."
+          )
           PY
 
       - name: Show Apple toolchain
