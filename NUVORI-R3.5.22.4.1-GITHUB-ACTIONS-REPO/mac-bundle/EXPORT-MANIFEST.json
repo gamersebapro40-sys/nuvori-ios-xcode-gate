@@ -1,0 +1,94 @@
+{
+  "dependency-R3.5.22.3.4.1.json": {
+    "sha256": "55ec8639a58f2b0f03858a40c8ce108edaaa33230062f41dca3f77c344aba58d",
+    "bytes": 21716
+  },
+  "native/ios-swiftui/NUVORI/LocalFirstSpeechService.swift": {
+    "sha256": "d307b9c8a113903317bb8d4713f21e099308f17d54b29a6c12dbf799bdfd0a6d",
+    "bytes": 4518
+  },
+  "native/ios-swiftui/NUVORI/NUVORIAPIClient.swift": {
+    "sha256": "fe1830aae90ce35852d2fd08c520cd5786653c654f05cc0bb0e844b6ccc4b3ab",
+    "bytes": 5541
+  },
+  "native/ios-swiftui/NUVORI/NUVORIApp.swift": {
+    "sha256": "6ee5b572339eadc37809062b43013684ba45c808548faad167b1e19020a3ad0e",
+    "bytes": 179
+  },
+  "native/ios-swiftui/NUVORI/NUVORIAppState.swift": {
+    "sha256": "f899d6071b56f81c914bb76f1f43f505dda6ab85e0f7db4af33ec3fb3dba294a",
+    "bytes": 779
+  },
+  "native/ios-swiftui/NUVORI/NUVORIEnvironment.swift": {
+    "sha256": "9f0cbef33949b75f505a38f38a8a21de3e1de553e3d17bef714b94b33016494f",
+    "bytes": 1132
+  },
+  "native/ios-swiftui/NUVORI/NUVORIHealthKitBridge.swift": {
+    "sha256": "7bcbc9868a9c458da37fabb89632643f652643de9ff364d53fc990da87c069b4",
+    "bytes": 6682
+  },
+  "native/ios-swiftui/NUVORI/NUVORIKeychainStore.swift": {
+    "sha256": "8d08a6f7dc762d94590ee43555d122523e7f4ca5ec692edb23c2a80615f43936",
+    "bytes": 3734
+  },
+  "native/ios-swiftui/NUVORI/RootView.swift": {
+    "sha256": "c5faee0fe3dfb7f8143259921c5f36f4e927db7db3181f7e5af8119e6ebccb0e",
+    "bytes": 1219
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/.nuvori-stage-owner.json": {
+    "sha256": "32a02102953bb308774afe8d807ff67d4be7d7485e571d9adf80fa4e8579995a",
+    "bytes": 407
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/APP-STORE-BLOCKERS.md": {
+    "sha256": "2f9b89f60d989eb8fd3b93019c4af041256ff5d2d987b9aa5fc28ffde7fad7d5",
+    "bytes": 1417
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/ARCHITECTURE-CONTRACT.md": {
+    "sha256": "61c5afc552ab71c811d4de0be9223517d7ce0356790f07e6af74acbb3dc62133",
+    "bytes": 795
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/GENERATE_XCODE_PROJECT.command": {
+    "sha256": "9abbc5673fe88f230006fda69495401e2efc581e866ead5807f474c8ec9988ae",
+    "bytes": 548
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/project.yml": {
+    "sha256": "5403df6cde272bbd2aa12d169b090a024028a2379667525a321755390640db70",
+    "bytes": 1093
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/README.md": {
+    "sha256": "1abfa90722bff86c63056779904bc2cd2200d4fc1567d13256fabdeddfeaab15",
+    "bytes": 382
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json": {
+    "sha256": "d6b58f788806db05bfa4e074e7eb83b97c1cab8473c996190996ff26e63926b3",
+    "bytes": 499
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/Resources/Assets.xcassets/Contents.json": {
+    "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+    "bytes": 63
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/Resources/PrivacyInfo.xcprivacy": {
+    "sha256": "8ddef5d81cae2b2575b2494fe55f903348687965d862f21fccac4f18f7b54bb0",
+    "bytes": 381
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/Support/Info.plist": {
+    "sha256": "6b307f204ce0596e13cad5e2bc35139136ecdbc3eac82002b2b2044b4f48eab6",
+    "bytes": 1498
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/Support/NUVORI.entitlements": {
+    "sha256": "7a387c53acfd6a2139e94431163f54541e073b3aaacde7a6b944252183cc4263",
+    "bytes": 241
+  },
+  "native/ios-xcode-staging/NUVORI-R3.5.22.2/VERIFY_SIMULATOR_BUILD.command": {
+    "sha256": "a81dd7c1a889a1aa319432ce6b7aac702ea405a7cd6b67a280228e30a4aeaf0a",
+    "bytes": 692
+  },
+  "README-R3.5.22.4-MAC.txt": {
+    "sha256": "f2fa9dfdbf5ff00f43ad986ba71596f6ab2cbcb938df50d17797749ed3263b5e",
+    "bytes": 998
+  },
+  "RUN-R3.5.22.4-MAC-GATE.command": {
+    "sha256": "d1bb6d50978c9488df3963026150c22258701bff6f5db5b5782574077accea5b",
+    "bytes": 4145
+  }
+}

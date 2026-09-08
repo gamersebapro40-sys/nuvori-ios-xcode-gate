@@ -1,0 +1,473 @@
+{
+  "patch": "R3.5.22.3.4.1-NATIVE-AUTH-CLIENT-PATCH-ORDER-FIX-SAFE-RETRY-WITH-ROLLBACK",
+  "generatedAt": "2026-09-08T04:25:05.202Z",
+  "installMode": "safe-retry-after-patch-order-assertion-defect",
+  "defect": {
+    "prior": "22.3.4 inserted new auth methods containing several URLSession.data(for:) calls, then incorrectly asserted the whole file still contained exactly one such call before locating searchFoods.",
+    "productMeaning": "installer patch-order/assertion defect; prior run aborted before backup and before mutation"
+  },
+  "dependency": {
+    "sha256": "d7410c2062bf85c2438ec75a53d289fac9d6b07853cf27bef33ea51ecf74f711",
+    "verdict": "R3.5.22.3.4_NATIVE_AUTH_CLIENT_REPAIR_ABORTED",
+    "error": "existing searchFoods URLSession data(for:) call count != 1 before insertion replacement"
+  },
+  "hashes": {
+    "pre": {
+      "baseline": {
+        "server5/routes/api.mjs": {
+          "expected": "8ab8cb91ec0c9f7246b93ab592d8e7a01af4d3818e3dca2f986fecd4f1cb83e4",
+          "actual": "8ab8cb91ec0c9f7246b93ab592d8e7a01af4d3818e3dca2f986fecd4f1cb83e4",
+          "exists": true,
+          "ok": true
+        },
+        "server5/services/session-bff.mjs": {
+          "expected": "77c9239715f1662bc99f48ab634a5fc4b1ad56fd7e6ece7308fa1c52f286845c",
+          "actual": "77c9239715f1662bc99f48ab634a5fc4b1ad56fd7e6ece7308fa1c52f286845c",
+          "exists": true,
+          "ok": true
+        },
+        "server5/services/auth-ai.mjs": {
+          "expected": "22e14ebd0e02551786242e02ae586b322004d635aec1ba42be85946fbecd89fb",
+          "actual": "22e14ebd0e02551786242e02ae586b322004d635aec1ba42be85946fbecd89fb",
+          "exists": true,
+          "ok": true
+        },
+        "server5/server.mjs": {
+          "expected": "3481c2876fd38f8fcb86e5202fd6739f8fab92bb7149af8f5ec5e43255547276",
+          "actual": "3481c2876fd38f8fcb86e5202fd6739f8fab92bb7149af8f5ec5e43255547276",
+          "exists": true,
+          "ok": true
+        },
+        "index.html": {
+          "expected": "90d775d6eb1c3d798aaaedef90accb0cb45a99e4edd7dce545c6a39edd9e4fd5",
+          "actual": "90d775d6eb1c3d798aaaedef90accb0cb45a99e4edd7dce545c6a39edd9e4fd5",
+          "exists": true,
+          "ok": true
+        },
+        "app.js": {
+          "expected": "7eaeb0ab93aa2652ddbd5b216321afaa12e8d3531f3d65b051d424fc2b2f4c61",
+          "actual": "7eaeb0ab93aa2652ddbd5b216321afaa12e8d3531f3d65b051d424fc2b2f4c61",
+          "exists": true,
+          "ok": true
+        },
+        "quality-v5/canonical-ui-v8.28.1.js": {
+          "expected": "b9c93dd50c0790948f954890874de13b49d67f3a4ee27b1203619f96ef8bcad3",
+          "actual": "b9c93dd50c0790948f954890874de13b49d67f3a4ee27b1203619f96ef8bcad3",
+          "exists": true,
+          "ok": true
+        },
+        "quality-v5/complete-brain-core-v8.11.mjs": {
+          "expected": "fa819269496b7fc7d1549cc580bfe12d1a090ffefe2066c6755186bf0280677d",
+          "actual": "fa819269496b7fc7d1549cc580bfe12d1a090ffefe2066c6755186bf0280677d",
+          "exists": true,
+          "ok": true
+        },
+        "quality-v5/complete-personal-brain-v8.11.js": {
+          "expected": "87f0334764db61ff744aaf9930897a810840f19be8a154499d65c6ae2520fe53",
+          "actual": "87f0334764db61ff744aaf9930897a810840f19be8a154499d65c6ae2520fe53",
+          "exists": true,
+          "ok": true
+        },
+        "native/ios-swiftui/NUVORI/LocalFirstSpeechService.swift": {
+          "expected": "d307b9c8a113903317bb8d4713f21e099308f17d54b29a6c12dbf799bdfd0a6d",
+          "actual": "d307b9c8a113903317bb8d4713f21e099308f17d54b29a6c12dbf799bdfd0a6d",
+          "exists": true,
+          "ok": true
+        },
+        "native/ios-swiftui/NUVORI/NUVORIAPIClient.swift": {
+          "expected": "2324e1dafc7c2ecd4e02d1f164c844552cd0eff651565b7a1766669a5ff66442",
+          "actual": "2324e1dafc7c2ecd4e02d1f164c844552cd0eff651565b7a1766669a5ff66442",
+          "exists": true,
+          "ok": true
+        },
+        "native/ios-swiftui/NUVORI/NUVORIApp.swift": {
+          "expected": "6ee5b572339eadc37809062b43013684ba45c808548faad167b1e19020a3ad0e",
+          "actual": "6ee5b572339eadc37809062b43013684ba45c808548faad167b1e19020a3ad0e",
+          "exists": true,
+          "ok": true
+        },
+        "native/ios-swiftui/NUVORI/NUVORIAppState.swift": {
+          "expected": "f899d6071b56f81c914bb76f1f43f505dda6ab85e0f7db4af33ec3fb3dba294a",
+          "actual": "f899d6071b56f81c914bb76f1f43f505dda6ab85e0f7db4af33ec3fb3dba294a",
+          "exists": true,
+          "ok": true
+        },
+        "native/ios-swiftui/NUVORI/NUVORIHealthKitBridge.swift": {
+          "expected": "7bcbc9868a9c458da37fabb89632643f652643de9ff364d53fc990da87c069b4",
+          "actual": "7bcbc9868a9c458da37fabb89632643f652643de9ff364d53fc990da87c069b4",
+          "exists": true,
+          "ok": true
+        },
+        "native/ios-swiftui/NUVORI/RootView.swift": {
+          "expected": "c5faee0fe3dfb7f8143259921c5f36f4e927db7db3181f7e5af8119e6ebccb0e",
+          "actual": "c5faee0fe3dfb7f8143259921c5f36f4e927db7db3181f7e5af8119e6ebccb0e",
+          "exists": true,
+          "ok": true
+        },
+        "native/ios-swiftui/NUVORI/NUVORIEnvironment.swift": {
+          "expected": "9f0cbef33949b75f505a38f38a8a21de3e1de553e3d17bef714b94b33016494f",
+          "actual": "9f0cbef33949b75f505a38f38a8a21de3e1de553e3d17bef714b94b33016494f",
+          "exists": true,
+          "ok": true
+        },
+        "native/ios-swiftui/NUVORI/NUVORIKeychainStore.swift": {
+          "expected": "5b36673b9b453f7941d390188887623169b6a6594fc195815000c6aae287954f",
+          "actual": "5b36673b9b453f7941d390188887623169b6a6594fc195815000c6aae287954f",
+          "exists": true,
+          "ok": true
+        }
+      },
+      "stage": {
+        ".nuvori-stage-owner.json": {
+          "expected": "32a02102953bb308774afe8d807ff67d4be7d7485e571d9adf80fa4e8579995a",
+          "actual": "32a02102953bb308774afe8d807ff67d4be7d7485e571d9adf80fa4e8579995a",
+          "exists": true,
+          "ok": true
+        },
+        "APP-STORE-BLOCKERS.md": {
+          "expected": "2f9b89f60d989eb8fd3b93019c4af041256ff5d2d987b9aa5fc28ffde7fad7d5",
+          "actual": "2f9b89f60d989eb8fd3b93019c4af041256ff5d2d987b9aa5fc28ffde7fad7d5",
+          "exists": true,
+          "ok": true
+        },
+        "ARCHITECTURE-CONTRACT.md": {
+          "expected": "61c5afc552ab71c811d4de0be9223517d7ce0356790f07e6af74acbb3dc62133",
+          "actual": "61c5afc552ab71c811d4de0be9223517d7ce0356790f07e6af74acbb3dc62133",
+          "exists": true,
+          "ok": true
+        },
+        "GENERATE_XCODE_PROJECT.command": {
+          "expected": "9abbc5673fe88f230006fda69495401e2efc581e866ead5807f474c8ec9988ae",
+          "actual": "9abbc5673fe88f230006fda69495401e2efc581e866ead5807f474c8ec9988ae",
+          "exists": true,
+          "ok": true
+        },
+        "project.yml": {
+          "expected": "5824e9e5af3d18bbb09b27e2e4145ec718bd0c1d21ff4202494d240784cebf69",
+          "actual": "5824e9e5af3d18bbb09b27e2e4145ec718bd0c1d21ff4202494d240784cebf69",
+          "exists": true,
+          "ok": true
+        },
+        "README.md": {
+          "expected": "1abfa90722bff86c63056779904bc2cd2200d4fc1567d13256fabdeddfeaab15",
+          "actual": "1abfa90722bff86c63056779904bc2cd2200d4fc1567d13256fabdeddfeaab15",
+          "exists": true,
+          "ok": true
+        },
+        "Resources/Assets.xcassets/AppIcon.appiconset/Contents.json": {
+          "expected": "d6b58f788806db05bfa4e074e7eb83b97c1cab8473c996190996ff26e63926b3",
+          "actual": "d6b58f788806db05bfa4e074e7eb83b97c1cab8473c996190996ff26e63926b3",
+          "exists": true,
+          "ok": true
+        },
+        "Resources/Assets.xcassets/Contents.json": {
+          "expected": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+          "actual": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+          "exists": true,
+          "ok": true
+        },
+        "Resources/PrivacyInfo.xcprivacy": {
+          "expected": "8ddef5d81cae2b2575b2494fe55f903348687965d862f21fccac4f18f7b54bb0",
+          "actual": "8ddef5d81cae2b2575b2494fe55f903348687965d862f21fccac4f18f7b54bb0",
+          "exists": true,
+          "ok": true
+        },
+        "Support/Info.plist": {
+          "expected": "d8e72a95c58255c8f6c1840dd6cb8db60243f5aa827ee7c80cc4331676c981b6",
+          "actual": "d8e72a95c58255c8f6c1840dd6cb8db60243f5aa827ee7c80cc4331676c981b6",
+          "exists": true,
+          "ok": true
+        },
+        "Support/NUVORI.entitlements": {
+          "expected": "7a387c53acfd6a2139e94431163f54541e073b3aaacde7a6b944252183cc4263",
+          "actual": "7a387c53acfd6a2139e94431163f54541e073b3aaacde7a6b944252183cc4263",
+          "exists": true,
+          "ok": true
+        },
+        "VERIFY_SIMULATOR_BUILD.command": {
+          "expected": "a81dd7c1a889a1aa319432ce6b7aac702ea405a7cd6b67a280228e30a4aeaf0a",
+          "actual": "a81dd7c1a889a1aa319432ce6b7aac702ea405a7cd6b67a280228e30a4aeaf0a",
+          "exists": true,
+          "ok": true
+        }
+      }
+    },
+    "post": {
+      "baseline": {
+        "server5/routes/api.mjs": {
+          "expectedOld": "8ab8cb91ec0c9f7246b93ab592d8e7a01af4d3818e3dca2f986fecd4f1cb83e4",
+          "actual": "8ab8cb91ec0c9f7246b93ab592d8e7a01af4d3818e3dca2f986fecd4f1cb83e4",
+          "changed": false,
+          "intended": false
+        },
+        "server5/services/session-bff.mjs": {
+          "expectedOld": "77c9239715f1662bc99f48ab634a5fc4b1ad56fd7e6ece7308fa1c52f286845c",
+          "actual": "77c9239715f1662bc99f48ab634a5fc4b1ad56fd7e6ece7308fa1c52f286845c",
+          "changed": false,
+          "intended": false
+        },
+        "server5/services/auth-ai.mjs": {
+          "expectedOld": "22e14ebd0e02551786242e02ae586b322004d635aec1ba42be85946fbecd89fb",
+          "actual": "22e14ebd0e02551786242e02ae586b322004d635aec1ba42be85946fbecd89fb",
+          "changed": false,
+          "intended": false
+        },
+        "server5/server.mjs": {
+          "expectedOld": "3481c2876fd38f8fcb86e5202fd6739f8fab92bb7149af8f5ec5e43255547276",
+          "actual": "3481c2876fd38f8fcb86e5202fd6739f8fab92bb7149af8f5ec5e43255547276",
+          "changed": false,
+          "intended": false
+        },
+        "index.html": {
+          "expectedOld": "90d775d6eb1c3d798aaaedef90accb0cb45a99e4edd7dce545c6a39edd9e4fd5",
+          "actual": "90d775d6eb1c3d798aaaedef90accb0cb45a99e4edd7dce545c6a39edd9e4fd5",
+          "changed": false,
+          "intended": false
+        },
+        "app.js": {
+          "expectedOld": "7eaeb0ab93aa2652ddbd5b216321afaa12e8d3531f3d65b051d424fc2b2f4c61",
+          "actual": "7eaeb0ab93aa2652ddbd5b216321afaa12e8d3531f3d65b051d424fc2b2f4c61",
+          "changed": false,
+          "intended": false
+        },
+        "quality-v5/canonical-ui-v8.28.1.js": {
+          "expectedOld": "b9c93dd50c0790948f954890874de13b49d67f3a4ee27b1203619f96ef8bcad3",
+          "actual": "b9c93dd50c0790948f954890874de13b49d67f3a4ee27b1203619f96ef8bcad3",
+          "changed": false,
+          "intended": false
+        },
+        "quality-v5/complete-brain-core-v8.11.mjs": {
+          "expectedOld": "fa819269496b7fc7d1549cc580bfe12d1a090ffefe2066c6755186bf0280677d",
+          "actual": "fa819269496b7fc7d1549cc580bfe12d1a090ffefe2066c6755186bf0280677d",
+          "changed": false,
+          "intended": false
+        },
+        "quality-v5/complete-personal-brain-v8.11.js": {
+          "expectedOld": "87f0334764db61ff744aaf9930897a810840f19be8a154499d65c6ae2520fe53",
+          "actual": "87f0334764db61ff744aaf9930897a810840f19be8a154499d65c6ae2520fe53",
+          "changed": false,
+          "intended": false
+        },
+        "native/ios-swiftui/NUVORI/LocalFirstSpeechService.swift": {
+          "expectedOld": "d307b9c8a113903317bb8d4713f21e099308f17d54b29a6c12dbf799bdfd0a6d",
+          "actual": "d307b9c8a113903317bb8d4713f21e099308f17d54b29a6c12dbf799bdfd0a6d",
+          "changed": false,
+          "intended": false
+        },
+        "native/ios-swiftui/NUVORI/NUVORIAPIClient.swift": {
+          "expectedOld": "2324e1dafc7c2ecd4e02d1f164c844552cd0eff651565b7a1766669a5ff66442",
+          "actual": "fe1830aae90ce35852d2fd08c520cd5786653c654f05cc0bb0e844b6ccc4b3ab",
+          "changed": true,
+          "intended": true
+        },
+        "native/ios-swiftui/NUVORI/NUVORIApp.swift": {
+          "expectedOld": "6ee5b572339eadc37809062b43013684ba45c808548faad167b1e19020a3ad0e",
+          "actual": "6ee5b572339eadc37809062b43013684ba45c808548faad167b1e19020a3ad0e",
+          "changed": false,
+          "intended": false
+        },
+        "native/ios-swiftui/NUVORI/NUVORIAppState.swift": {
+          "expectedOld": "f899d6071b56f81c914bb76f1f43f505dda6ab85e0f7db4af33ec3fb3dba294a",
+          "actual": "f899d6071b56f81c914bb76f1f43f505dda6ab85e0f7db4af33ec3fb3dba294a",
+          "changed": false,
+          "intended": false
+        },
+        "native/ios-swiftui/NUVORI/NUVORIHealthKitBridge.swift": {
+          "expectedOld": "7bcbc9868a9c458da37fabb89632643f652643de9ff364d53fc990da87c069b4",
+          "actual": "7bcbc9868a9c458da37fabb89632643f652643de9ff364d53fc990da87c069b4",
+          "changed": false,
+          "intended": false
+        },
+        "native/ios-swiftui/NUVORI/RootView.swift": {
+          "expectedOld": "c5faee0fe3dfb7f8143259921c5f36f4e927db7db3181f7e5af8119e6ebccb0e",
+          "actual": "c5faee0fe3dfb7f8143259921c5f36f4e927db7db3181f7e5af8119e6ebccb0e",
+          "changed": false,
+          "intended": false
+        },
+        "native/ios-swiftui/NUVORI/NUVORIEnvironment.swift": {
+          "expectedOld": "9f0cbef33949b75f505a38f38a8a21de3e1de553e3d17bef714b94b33016494f",
+          "actual": "9f0cbef33949b75f505a38f38a8a21de3e1de553e3d17bef714b94b33016494f",
+          "changed": false,
+          "intended": false
+        },
+        "native/ios-swiftui/NUVORI/NUVORIKeychainStore.swift": {
+          "expectedOld": "5b36673b9b453f7941d390188887623169b6a6594fc195815000c6aae287954f",
+          "actual": "8d08a6f7dc762d94590ee43555d122523e7f4ca5ec692edb23c2a80615f43936",
+          "changed": true,
+          "intended": true
+        }
+      },
+      "stage": {
+        ".nuvori-stage-owner.json": {
+          "expectedOld": "32a02102953bb308774afe8d807ff67d4be7d7485e571d9adf80fa4e8579995a",
+          "actual": "32a02102953bb308774afe8d807ff67d4be7d7485e571d9adf80fa4e8579995a",
+          "changed": false,
+          "intended": false
+        },
+        "APP-STORE-BLOCKERS.md": {
+          "expectedOld": "2f9b89f60d989eb8fd3b93019c4af041256ff5d2d987b9aa5fc28ffde7fad7d5",
+          "actual": "2f9b89f60d989eb8fd3b93019c4af041256ff5d2d987b9aa5fc28ffde7fad7d5",
+          "changed": false,
+          "intended": false
+        },
+        "ARCHITECTURE-CONTRACT.md": {
+          "expectedOld": "61c5afc552ab71c811d4de0be9223517d7ce0356790f07e6af74acbb3dc62133",
+          "actual": "61c5afc552ab71c811d4de0be9223517d7ce0356790f07e6af74acbb3dc62133",
+          "changed": false,
+          "intended": false
+        },
+        "GENERATE_XCODE_PROJECT.command": {
+          "expectedOld": "9abbc5673fe88f230006fda69495401e2efc581e866ead5807f474c8ec9988ae",
+          "actual": "9abbc5673fe88f230006fda69495401e2efc581e866ead5807f474c8ec9988ae",
+          "changed": false,
+          "intended": false
+        },
+        "project.yml": {
+          "expectedOld": "5824e9e5af3d18bbb09b27e2e4145ec718bd0c1d21ff4202494d240784cebf69",
+          "actual": "5403df6cde272bbd2aa12d169b090a024028a2379667525a321755390640db70",
+          "changed": true,
+          "intended": true
+        },
+        "README.md": {
+          "expectedOld": "1abfa90722bff86c63056779904bc2cd2200d4fc1567d13256fabdeddfeaab15",
+          "actual": "1abfa90722bff86c63056779904bc2cd2200d4fc1567d13256fabdeddfeaab15",
+          "changed": false,
+          "intended": false
+        },
+        "Resources/Assets.xcassets/AppIcon.appiconset/Contents.json": {
+          "expectedOld": "d6b58f788806db05bfa4e074e7eb83b97c1cab8473c996190996ff26e63926b3",
+          "actual": "d6b58f788806db05bfa4e074e7eb83b97c1cab8473c996190996ff26e63926b3",
+          "changed": false,
+          "intended": false
+        },
+        "Resources/Assets.xcassets/Contents.json": {
+          "expectedOld": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+          "actual": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+          "changed": false,
+          "intended": false
+        },
+        "Resources/PrivacyInfo.xcprivacy": {
+          "expectedOld": "8ddef5d81cae2b2575b2494fe55f903348687965d862f21fccac4f18f7b54bb0",
+          "actual": "8ddef5d81cae2b2575b2494fe55f903348687965d862f21fccac4f18f7b54bb0",
+          "changed": false,
+          "intended": false
+        },
+        "Support/Info.plist": {
+          "expectedOld": "d8e72a95c58255c8f6c1840dd6cb8db60243f5aa827ee7c80cc4331676c981b6",
+          "actual": "6b307f204ce0596e13cad5e2bc35139136ecdbc3eac82002b2b2044b4f48eab6",
+          "changed": true,
+          "intended": true
+        },
+        "Support/NUVORI.entitlements": {
+          "expectedOld": "7a387c53acfd6a2139e94431163f54541e073b3aaacde7a6b944252183cc4263",
+          "actual": "7a387c53acfd6a2139e94431163f54541e073b3aaacde7a6b944252183cc4263",
+          "changed": false,
+          "intended": false
+        },
+        "VERIFY_SIMULATOR_BUILD.command": {
+          "expectedOld": "a81dd7c1a889a1aa319432ce6b7aac702ea405a7cd6b67a280228e30a4aeaf0a",
+          "actual": "a81dd7c1a889a1aa319432ce6b7aac702ea405a7cd6b67a280228e30a4aeaf0a",
+          "changed": false,
+          "intended": false
+        }
+      }
+    }
+  },
+  "preWrite": {
+    "oneClient": true,
+    "login": true,
+    "refresh": true,
+    "logout": true,
+    "searchUsesAuthenticatedData": true,
+    "refreshRetry": true,
+    "keychainPair": true,
+    "deviceOnly": true,
+    "noPreferences": true,
+    "oneProjectSetting": true,
+    "onePlistKey": true,
+    "plistSubstitution": true,
+    "noATSBypass": true
+  },
+  "backup": {
+    "relative": "_HOTFIX_BACKUPS/BEFORE_R3.5.22.3.4.1-2026-09-08T04-25-05-238Z",
+    "marker": {
+      "owner": "R3.5.22.3.4.1-NATIVE-AUTH-CLIENT-PATCH-ORDER-FIX-SAFE-RETRY-WITH-ROLLBACK",
+      "createdAt": "2026-09-08T04:25:05.253Z",
+      "dependencySha256": "d7410c2062bf85c2438ec75a53d289fac9d6b07853cf27bef33ea51ecf74f711",
+      "restoredFiles": [
+        "native/ios-swiftui/NUVORI/NUVORIAPIClient.swift",
+        "native/ios-swiftui/NUVORI/NUVORIKeychainStore.swift",
+        "native/ios-xcode-staging/NUVORI-R3.5.22.2/project.yml",
+        "native/ios-xcode-staging/NUVORI-R3.5.22.2/Support/Info.plist"
+      ],
+      "preHashes": {
+        "native/ios-swiftui/NUVORI/NUVORIAPIClient.swift": "2324e1dafc7c2ecd4e02d1f164c844552cd0eff651565b7a1766669a5ff66442",
+        "native/ios-swiftui/NUVORI/NUVORIKeychainStore.swift": "5b36673b9b453f7941d390188887623169b6a6594fc195815000c6aae287954f",
+        "native/ios-xcode-staging/NUVORI-R3.5.22.2/project.yml": "5824e9e5af3d18bbb09b27e2e4145ec718bd0c1d21ff4202494d240784cebf69",
+        "native/ios-xcode-staging/NUVORI-R3.5.22.2/Support/Info.plist": "d8e72a95c58255c8f6c1840dd6cb8db60243f5aa827ee7c80cc4331676c981b6"
+      }
+    }
+  },
+  "changes": {
+    "api": {
+      "sha256": "fe1830aae90ce35852d2fd08c520cd5786653c654f05cc0bb0e844b6ccc4b3ab",
+      "login": 1,
+      "refresh": 1,
+      "logout": 1,
+      "oneClient": 1
+    },
+    "keychain": {
+      "sha256": "8d08a6f7dc762d94590ee43555d122523e7f4ca5ec692edb23c2a80615f43936",
+      "refreshPair": true,
+      "deviceOnly": true
+    },
+    "stage": {
+      "projectSha256": "5403df6cde272bbd2aa12d169b090a024028a2379667525a321755390640db70",
+      "plistSha256": "6b307f204ce0596e13cad5e2bc35139136ecdbc3eac82002b2b2044b4f48eab6",
+      "projectSetting": true,
+      "plistKey": true
+    },
+    "ownership": {
+      "appStateCount": 1,
+      "environmentCount": 1
+    }
+  },
+  "staticCert": {
+    "oneClient": true,
+    "login": true,
+    "refresh": true,
+    "logout": true,
+    "searchUsesAuthenticatedData": true,
+    "refreshRetry": true,
+    "keychainPair": true,
+    "deviceOnly": true,
+    "noPreferences": true,
+    "oneProjectSetting": true,
+    "onePlistKey": true,
+    "plistSubstitution": true,
+    "noATSBypass": true
+  },
+  "gates": {
+    "dependency exists": true,
+    "dependency SHA exact": true,
+    "22.3.4 abort was pre-mutation patch assertion defect": true,
+    "post-22.3.3.1 baseline still exact after failed 22.3.4": true,
+    "22.2 staging still exact after failed 22.3.4": true,
+    "generated native client output passes semantic pre-cert before mutation": true,
+    "installed output matches pre-certified generated semantics": true,
+    "one login + refresh + logout method installed in ONE APIClient": true,
+    "401 contract refreshes once and retries using rotated Authorization": true,
+    "Keychain now owns access + refresh pair with device-only accessibility": true,
+    "Release API build-setting and Info.plist plumbing installed exactly once": true,
+    "no ATS arbitrary-load bypass added": true,
+    "Release still fails closed unless real HTTPS NUVORI_API_BASE_URL is supplied": true,
+    "single AppState + Environment owners remain": true,
+    "only APIClient + Keychain changed in canonical baseline": true,
+    "only project.yml + Info.plist changed in Xcode stage": true,
+    "macOS simulator verification script remains byte-identical": true
+  },
+  "warnings": [],
+  "rollback": null,
+  "verdict": "R3.5.22.3.4.1_NATIVE_AUTH_CLIENT_PATCH_ORDER_FIX_SAFE_RETRY_PASS_INSTALLED_WITH_ROLLBACK",
+  "next": "R3.5.22.4-NATIVE-MAC-XCODE-COMPILE-SIGNING-BUNDLE-PRIVACY-AND-APP-STORE-READINESS-GATE"
+}
