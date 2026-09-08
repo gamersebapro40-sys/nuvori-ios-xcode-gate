@@ -1,0 +1,172 @@
+name: NUVORI iOS Xcode Gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  xcode-gate:
+    name: macOS / Xcode / iOS Simulator
+    runs-on: macos-15
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Locate and verify exact NUVORI Mac bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mapfile -t manifests < <(find . -name EXPORT-MANIFEST.json -type f)
+
+          if [ "${#manifests[@]}" -ne 1 ]; then
+            echo "Expected exactly one EXPORT-MANIFEST.json"
+            printf '%s\n' "${manifests[@]}"
+            exit 1
+          fi
+
+          MANIFEST="${manifests[0]}"
+          BUNDLE_ROOT="$(dirname "$MANIFEST")"
+
+          echo "Found bundle at: $BUNDLE_ROOT"
+          echo "BUNDLE_ROOT=$BUNDLE_ROOT" >> "$GITHUB_ENV"
+
+          python3 - "$BUNDLE_ROOT" <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          import sys
+
+          root = Path(sys.argv[1])
+          manifest_path = root / "EXPORT-MANIFEST.json"
+
+          expected_manifest_sha = "72ea8c954d5f54de679990fb496154b2004b359028574ff4e69acef716a61eaa"
+          actual_manifest_sha = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+
+          print("EXPORT-MANIFEST SHA-256:", actual_manifest_sha)
+
+          if actual_manifest_sha != expected_manifest_sha:
+              raise SystemExit("FAIL: export manifest SHA mismatch")
+
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+          failures = []
+
+          for rel, meta in manifest.items():
+              p = root / rel
+
+              if not p.exists():
+                  failures.append(f"{rel}: missing")
+                  continue
+
+              actual = hashlib.sha256(p.read_bytes()).hexdigest()
+
+              if actual != meta["sha256"]:
+                  failures.append(
+                      f"{rel}: {actual} != {meta['sha256']}"
+                  )
+
+          if failures:
+              print("\n".join(failures))
+              raise SystemExit("FAIL: exported file SHA verification failed")
+
+          print(f"PASS: {len(manifest)} exported files verified exactly.")
+          PY
+
+      - name: Show Apple toolchain
+        shell: bash
+        run: |
+          sw_vers
+          echo
+          xcodebuild -version
+          echo
+          xcrun swift --version
+
+      - name: Install XcodeGen
+        shell: bash
+        run: |
+          if command -v xcodegen >/dev/null 2>&1; then
+            xcodegen --version
+          else
+            brew install xcodegen
+            xcodegen --version
+          fi
+
+      - name: Run real NUVORI Xcode gate
+        id: gate
+        continue-on-error: true
+        shell: bash
+        run: |
+          cd "$BUNDLE_ROOT"
+
+          chmod +x RUN-R3.5.22.4-MAC-GATE.command
+
+          set +e
+          ./RUN-R3.5.22.4-MAC-GATE.command \
+            2>&1 | tee "$GITHUB_WORKSPACE/R3.5.22.4-MAC-GATE.log"
+
+          rc=${PIPESTATUS[0]}
+          set -e
+
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+
+          exit "$rc"
+
+      - name: Collect result
+        if: always()
+        shell: bash
+        run: |
+          RESULT="$BUNDLE_ROOT/R3.5.22.4-MAC-RESULT.json"
+
+          if [ -f "$RESULT" ]; then
+            cp "$RESULT" "$GITHUB_WORKSPACE/R3.5.22.4-MAC-RESULT.json"
+
+            echo "================ RESULT ================"
+            cat "$RESULT"
+            echo
+          else
+            echo "No R3.5.22.4-MAC-RESULT.json produced."
+          fi
+
+      - name: Upload Xcode evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: NUVORI-R3.5.22.4-XCODE-GATE-EVIDENCE
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            R3.5.22.4-MAC-RESULT.json
+            R3.5.22.4-MAC-GATE.log
+
+      - name: Enforce real simulator compile
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          p = Path("R3.5.22.4-MAC-RESULT.json")
+
+          if not p.exists():
+              raise SystemExit(
+                  "FAIL: Mac gate did not generate the result JSON."
+              )
+
+          j = json.loads(p.read_text())
+
+          print("Verdict:", j.get("verdict"))
+          print("Simulator build:", j.get("simulatorBuildPass"))
+
+          if not j.get("simulatorBuildPass"):
+              raise SystemExit(
+                  "FAIL: real iOS Simulator compilation did not pass."
+              )
+
+          print("PASS: NUVORI compiled successfully with real Apple Xcode.")
+          PY
