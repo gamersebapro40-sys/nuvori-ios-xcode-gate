@@ -62,32 +62,30 @@ jobs:
               manifest_path.read_text(encoding="utf-8")
           )
 
+          allowed_missing = {
+              "native/ios-xcode-staging/NUVORI-R3.5.22.2/.nuvori-stage-owner.json"
+          }
+
           failures = []
 
           for rel, meta in manifest.items():
               p = root / rel
 
-          if not p.exists():
-              allowed_missing = {
-                  "native/ios-xcode-staging/NUVORI-R3.5.22.2/.nuvori-stage-owner.json"
-              }
-          
-              if rel in allowed_missing:
-                  print(
-                      "INFO: ownership metadata omitted by browser upload:",
-                      rel
-                  )
-                  continue
-          
-              failures.append(f"{rel}: MISSING")
-              continue
+              if not p.exists():
+                  if rel in allowed_missing:
+                      print(
+                          "INFO: browser upload omitted ownership metadata:",
+                          rel
+                      )
+                  else:
+                      failures.append(f"{rel}: MISSING")
+              else:
+                  h = hashlib.sha256(p.read_bytes()).hexdigest()
 
-              h = hashlib.sha256(p.read_bytes()).hexdigest()
-
-              if h != meta["sha256"]:
-                  failures.append(
-                      f"{rel}: {h} != {meta['sha256']}"
-                  )
+                  if h != meta["sha256"]:
+                      failures.append(
+                          f"{rel}: {h} != {meta['sha256']}"
+                      )
 
           if failures:
               for failure in failures:
@@ -98,7 +96,8 @@ jobs:
               )
 
           print(
-              f"PASS: {len(manifest)} files verified exactly."
+              f"PASS: bundle verified. "
+              f"Allowed missing metadata: {len(allowed_missing)}"
           )
           PY
 
